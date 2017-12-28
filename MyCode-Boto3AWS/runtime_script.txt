@@ -1,0 +1,133 @@
+----------~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+HISTORY_AGENTACTIVITYLOG.sh
+----------~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#!/bin/bash
+source /data/care_env/bin/activate
+source /data/care_env/care_common.sh
+
+python2.7 $ININ_INGESTION/module/ININ_DIRECT_INGESTION_REVIEW.py HISTORY_ININ_AGENTACTIVITYLOG 2DAY
+----------------------------------------------------------------------------------------------------
+
+
+----------~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+HISTORY_INDIVIDUAL.sh
+----------~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#!/bin/bash
+source /data/care_env/bin/activate
+source /data/care_env/care_common.sh
+
+python2.7 $ININ_INGESTION/module/ININ_DIRECT_INGESTION_REVIEW.py HISTORY_ININ_INDIVIDUAL 2DAY
+----------------------------------------------------------------------------------------------------
+
+
+----------~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+HISTORY_IWRKGRPQUEUESTATS.sh
+----------~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#!/bin/bash
+source /data/care_env/bin/activate
+source /data/care_env/care_common.sh
+
+python2.7 $ININ_INGESTION/module/ININ_DIRECT_INGESTION_REVIEW.py HISTORY_ININ_IWRKGRPQUEUESTATS 30DAY
+----------------------------------------------------------------------------------------------------
+
+
+----------~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+HISTORY_INTERACTIONWRAPUP.sh
+----------~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#!/bin/bash
+source /data/care_env/bin/activate
+source /data/care_env/care_common.sh
+
+python2.7 $ININ_INGESTION/module/ININ_DIRECT_INGESTION_REVIEW.py HISTORY_INTERACTION_WRAPUP 30DAY
+----------------------------------------------------------------------------------------------------
+
+
+
+----------~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+HISTORY_CUSTOM_SEGMENTSPARSED.sh
+----------~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#!/bin/bash
+source /data/care_env/bin/activate
+source /data/care_env/care_common.sh
+
+python2.7 $ININ_INGESTION/module/ININ_DIRECT_INGESTION_REVIEW.py HISTORY_ININ_CUSTOM_SEGMENTPARSED 30DAY
+--------------------------------------------------------------------------------------------------------
+
+
+----------~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+HISTORY_IAGENTQUEUESTATS.sh
+----------~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#!/bin/bash
+source /data/care_env/bin/activate
+source /data/care_env/care_common.sh
+
+python2.7 $ININ_INGESTION/module/ININ_DIRECT_INGESTION_REVIEW.py HISTORY_ININ_IAGENTQUEUESTATS 30DAY
+----------------------------------------------------------------------------------------------------
+
+
+----------~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+HISTORY_INTERACTION_SUMMARY.sh
+----------~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#!/bin/bash
+source /data/care_env/bin/activate
+source /data/care_env/care_common.sh
+
+python2.7 $ININ_INGESTION/module/ININ_DIRECT_INGESTION_REVIEW.py HISTORY_ININ_INTERACTION_SUMMARY 30DAY
+----------------------------------------------------------------------------------------------------
+
+
+----------~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+HISTORY_INTERACTION_CUSTOMATTRIBUTES.sh
+----------~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#!/bin/bash
+source /data/care_env/bin/activate
+source /data/care_env/care_common.sh
+
+python2.7 $ININ_INGESTION/module/ININ_DIRECT_INGESTION_REVIEW.py HISTORY_ININ_INTERACTION_CUSTOMATTRIBUTES 2DAY
+----------------------------------------------------------------------------------------------------
+
+
+----------~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+HISTORY_INTXSEGMENT.sh
+----------~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#!/bin/bash
+source /data/care_env/bin/activate
+source /data/care_env/care_common.sh
+
+python2.7 $ININ_INGESTION/module/ININ_DIRECT_INGESTION_REVIEW.py HISTORY_ININ_INTXSEGMENT 30DAY
+----------------------------------------------------------------------------------------------------
+
+
+
+----------~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+HISTORY_INTX_PARTICIPANT.sh
+----------~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#!/bin/bash
+source /data/care_env/bin/activate
+source /data/care_env/care_common.sh
+
+python2.7 $ININ_INGESTION/module/ININ_DIRECT_INGESTION_REVIEW.py HISTORY_ININ_INTX_PARTICIPANT 30DAY
+----------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
