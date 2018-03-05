@@ -1,5 +1,4 @@
 import boto3
-import pandas as pd
 import re
 
 
@@ -23,18 +22,14 @@ for js in objs:
         'Bucket': 'bktaws146',
         'Key': js["Key"]
     }
-    print "----------Murali----------"
-    print pd.to_datetime(obj['LastModified'])
-    print pd.to_datetime(js['LastModified'])
-    print "----------ABC----------"
     if js['LastModified'] >=obj['LastModified']:
         s3 = boto3.client('s3')
         a,b= js["Key"].split("-")
         print a
         print b
-        m = re.search("file1-[0-9]",js["Key"])
+        m = re.search("file2-[0-9]",js["Key"])
         if m is not None:
             s3.put_object(Body=b, Bucket='bkt146', Key=js["Key"]+ ".Done")
             print js["Key"] + "   has been copied from source to target bucket"
         else:
-            print " File of given format is not available"
+            print "File of given format is not available"
