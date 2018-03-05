@@ -1,7 +1,6 @@
 import boto3
-import json
-from datetime import datetime
 import pandas as pd
+import re
 
 
 s3 = boto3.client('s3')
@@ -17,24 +16,25 @@ print obj['LastModified']
 print "---------------"
 
 for js in objs:
-    #print js['LastModified']
+
     source= { 'Bucket' : 'bktaws146','Key':js["Key"]}
     dest ={ 'Bucket' : 'bkt146','Key':js["Key"]}
     copy_source = {
         'Bucket': 'bktaws146',
         'Key': js["Key"]
     }
-#    print pd.to_datetime('2018-03-04 09:30:13+00:00')
-#    latestTime=str(pd.to_datetime('2018-03-04 09:30:13+00:00'))+ "+00:00"
-
-    print "Murali"
+    print "----------Murali----------"
     print pd.to_datetime(obj['LastModified'])
     print pd.to_datetime(js['LastModified'])
-    print "ABC"
+    print "----------ABC----------"
     if js['LastModified'] >=obj['LastModified']:
         s3 = boto3.client('s3')
-        s3.put_object(Bucket='bkt146', Key=js["Key"]+ ".Done")
-        #s4.meta.client.copy(copy_source,'bkt146',split(js["Key"]+".Done")
-        print js["Key"] + "   has been copied from source to target bucket"
-
-#bkt146
+        a,b= js["Key"].split("-")
+        print a
+        print b
+        m = re.search("file1-[0-9]",js["Key"])
+        if m is not None:
+            s3.put_object(Body=b, Bucket='bkt146', Key=js["Key"]+ ".Done")
+            print js["Key"] + "   has been copied from source to target bucket"
+        else:
+            print " File of given format is not available"
