@@ -1,35 +1,46 @@
 import boto3
 import re
+import os
 
+import subprocess
+
+
+fistfile=os.utime('firstFile.init',(1330712280, 1330712292))
+print fistfile
 
 s3 = boto3.client('s3')
-s4 = boto3.resource('s3')
 get_last_modified = lambda obj: int(obj['LastModified'].strftime('%s'))
-objs = s3.list_objects_v2(Bucket='bktaws146')['Contents']
+OrigBucketExtract = s3.list_objects_v2(Bucket='bktaws146')['Contents']
 
-nlast = s3.list_objects_v2(Bucket='bkt146')['Contents']
-[obj['Key'] for obj in sorted(nlast, key=get_last_modified)]
-print obj
-print obj['LastModified']
+try:
+    nlast = s3.list_objects_v2(Bucket='bkt146')['Contents']
+except Exception, e:
+    print e
+    s3 = boto3.client('s3')
+    s3.put_object(Body="InitFile", Bucket='bkt146', Key='firstFile.init')
+    nlast = s3.list_objects_v2(Bucket='bkt146')['Contents']
+
+
+[doneBucketobj['Key'] for doneBucketobj in sorted(nlast, key=get_last_modified)]
+
+print doneBucketobj
+print doneBucketobj['LastModified']
+
+DoneFile=doneBucketobj['Key']
+Splitfile=DoneFile.split('.Done')
+print "Split file to match with orig bucket file" + str(Splitfile)
 
 print "---------------"
 
-for js in objs:
+for OrigBucket in OrigBucketExtract:
 
-    source= { 'Bucket' : 'bktaws146','Key':js["Key"]}
-    dest ={ 'Bucket' : 'bkt146','Key':js["Key"]}
-    copy_source = {
-        'Bucket': 'bktaws146',
-        'Key': js["Key"]
-    }
-    if js['LastModified'] >=obj['LastModified']:
+    if OrigBucket['LastModified'] >=doneBucketobj['LastModified'] and OrigBucket["Key"]!=Splitfile:
         s3 = boto3.client('s3')
-        a,b= js["Key"].split("-")
-        print a
-        print b
-        m = re.search("file2-[0-9]",js["Key"])
-        if m is not None:
-            s3.put_object(Body=b, Bucket='bkt146', Key=js["Key"]+ ".Done")
-            print js["Key"] + "   has been copied from source to target bucket"
+        if re.search("file1-[0-9]", OrigBucket["Key"]):
+            a,b= OrigBucket["Key"].split("-")
+            s3.put_object(Body=b, Bucket='bkt146', Key=OrigBucket["Key"]+ ".Done")
+            print OrigBucket["Key"] + "   has been copied from source to target bucket"
         else:
-            print "File of given format is not available"
+            print "File does not have the correct format - Please check"
+    else:
+        print "File has already been copied Or File format does not match"
